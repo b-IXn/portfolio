@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Projects</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --accent: #ff6b35;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .back-btn {
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-btn:hover {
+            color: var(--accent);
+        }
+
+        /* Category Navigation */
+        .categories {
+            margin-bottom: 3rem;
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .category-tab {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--bg-secondary);
+            border: none;
+            border-radius: 6px;
+            color: var(--text-primary);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .category-tab.active {
+            background-color: var(--accent);
+        }
+
+        /* Project Grid */
+        .project-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            
+        }
+
+        .project-section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .project-card {
+    width: 320px; /* Adjusted for 16:9 ratio */
+    height: 180px; /* 16:9 aspect ratio */
+    background-color: var(--bg-secondary);
+    border-radius: 12px;
+    /* overflow: hidden; */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+        .project-info {
+            padding: 1rem;
+        }
+
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .project-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Carousel Navigation */
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .carousel-btn {
+            background-color: var(--bg-secondary);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-btn:hover {
+            background-color: var(--accent);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            margin: 2rem auto;
+        }
+
+        .modal-media {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -2rem;
+            right: 0;
+            color: var(--text-primary);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Graphic Design Page -->
+    <div class="container" id="video-editing">
+        <header class="header">
+            <h1>Graphic Design Projects</h1>
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Home
+            </a>
+        </header>
+
+        <div class="categories">
+            <div class="category-tabs">
+                <button class="category-tab active">Thumbnails</button>
+                <!-- <button class="category-tab">Long videos</button>
+                <button class="category-tab">Commercial</button>
+                <button class="category-tab">Motion Graphics</button> -->
+            </div>
+
+            <div class="project-section active">
+                <div class="project-grid">
+                    <!-- Video Project Cards -->
+                    <div class="project-card" data-type="image">
+                        <img src="assets/graphics/fortniteee.png" alt="Graphic Project 1" class="project-image">
+                        <!-- <video class="project-video" src="assets/video/final-portfolio.mp4"></video> -->
+                        <div class="project-info">
+                            <h3>Fortnite Thumbnail</h3>
+                            <p>Gaming thumbnail using canva</p>
+                        </div>
+                    </div>
+                    <!-- Repeat for more projects -->
+
+                    <div class="project-card" data-type="image">
+                        <img src="assets/graphics/cod.png" alt="Graphic Project 2" class="project-image">
+                        <!-- <video class="project-video" src="assets/video/final-portfolio.mp4"></video> -->
+                        <div class="project-info">
+                            <h3>COD Thumbnail</h3>
+                            <p>Gaming thumbnail using canva</p>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-type="image">
+                        <img src="assets/graphics/minecraftt.png" alt="Graphic Project 3" class="project-image">
+                        <!-- <video class="project-video" src="assets/video/final-portfolio.mp4"></video> -->
+                        <div class="project-info">
+                            <h3>Minecraft Thumbnail</h3>
+                            <p>Gaming thumbnail using canva</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="carousel-nav">
+                    <button class="carousel-btn">
+                        <i class="fas fa-chevron-up"></i>
+                    </button>
+                    <button class="carousel-btn">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Graphic Design Page -->
+    <div class="container" id="graphic-design" style="display: none;">
+        <header class="header">
+            <h1>Graphic Design Projects</h1>
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Home
+            </a>
+        </header>
+
+        <div class="categories">
+            <div class="category-tabs">
+                <button class="category-tab active">Thumbnails</button>
+                <button class="category-tab">Cover Arts</button>
+                <button class="category-tab">Branding</button>
+                <button class="category-tab">Illustrations</button>
+            </div>
+
+            <div class="project-section active">
+                <div class="project-grid">
+                    <!-- Design Project Cards -->
+                    <div class="project-card" data-type="image">
+                        <img src="/api/placeholder/400/200" alt="Design Project 1" class="project-image">
+                        <div class="project-info">
+                            <h3>Project Title</h3>
+                            <p>Brand identity design</p>
+                        </div>
+                    </div>
+                    <!-- Repeat for more projects -->
+                </div>
+
+                <div class="carousel-nav">
+                    <button class="carousel-btn">
+                        <i class="fas fa-chevron-up"></i>
+                    </button>
+                    <button class="carousel-btn">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-media"></div>
+        </div>
+    </div>
+
+    <script>
+        // Category Tab Switching
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                tab.parentElement.querySelectorAll('.category-tab').forEach(t => 
+                    t.classList.remove('active')
+                );
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Animate section change
+                const currentSection = document.querySelector('.project-section.active');
+                currentSection.style.opacity = '0';
+                currentSection.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    currentSection.style.opacity = '1';
+                    currentSection.style.transform = 'translateY(0)';
+                }, 300);
+            });
+        });
+
+        // Modal Functionality
+        const modal = document.querySelector('.modal');
+        const modalMedia = document.querySelector('.modal-media');
+        const closeModal = document.querySelector('.close-modal');
+
+        // Open modal
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const type = card.dataset.type;
+                const mediaSource = card.querySelector('.project-image').src;
+                
+                if (type === 'video') {
+                    modalMedia.innerHTML = `
+                        <video controls class="modal-media">
+                            <source src="${mediaSource}" type="video/mp4">
+                        </video>
+                    `;
+                } else {
+                    modalMedia.innerHTML = `
+                        <img src="${mediaSource}" class="modal-media" alt="Project">
+                    `;
+                }
+                
+                modal.style.display = 'block';
+            });
+        });
+
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Carousel Navigation
+        document.querySelectorAll('.carousel-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const direction = btn.querySelector('.fa-chevron-up') ? -1 : 1;
+                const projectGrid = btn.closest('.project-section').querySelector('.project-grid');
+                const scrollAmount = projectGrid.clientHeight * 0.5;
+                
+                projectGrid.scrollBy({
+                    top: scrollAmount * direction,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        
+    </script>
+</body>
+</html>

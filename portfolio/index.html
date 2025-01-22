@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --accent: #ff6b35;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Personal Details Section */
+        .personal-section {
+            display: flex;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+        }
+
+        .profile-image {
+            flex: 0 0 300px;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .personal-details {
+            flex: 1;
+        }
+
+        .personal-details h1 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .detail-item h3 {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .portfolio-card {
+            position: relative;
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .portfolio-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+        }
+
+        .card-overlay h2 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-overlay p {
+            color: var(--text-secondary);
+        }
+
+        /* Project Pages */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .project-item {
+            position: relative;
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .project-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Navigation */
+        .category-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-btn {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background-color: var(--accent);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 1000;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90vh;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content img,
+        .modal-content video {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: var(--text-primary);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .personal-section {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .portfolio-section {
+                grid-template-columns: 1fr;
+            }
+
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .bio{
+            padding: 0;
+            color: white;
+            font-size: small;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Personal Details Section -->
+        <section class="personal-section">
+            <div class="profile-image">
+                <img src="assets/profile/profile.jpg" alt="Profile Image">
+            </div>
+            <div class="personal-details">
+                <h1>Bidhan Karkee</h1>
+                <h1 class="bio">just your average college guy trying to earn some bucks for tuition : )</h1>
+
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <h3>Age</h3>
+                        <p>19</p>
+                    </div>
+                    <div class="detail-item">
+                        <h3>Country</h3>
+                        <p>Nepal </p>
+                    </div>
+                    <div class="detail-item">
+                        <h3>Skills</h3>
+                        <p>Video Editing, Graphic Design, Motion Graphics</p>
+                    </div>
+
+                    <div class="detail-item">
+                        <h3>Softwares</h3>
+                        <p>Canva, Capcut, DaVinci, Photoshop, Lightroom, Photopea</p>
+                    </div>
+                    <!-- <div class="detail-item">
+                        <h3>Experience</h3>
+                        <p></p>
+                    </div> -->
+                    <div class="detail-item">
+                        <h3>Hobbies</h3>
+                        <p> Digital Art, Guitar, Gaming</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section class="portfolio-section">
+            <div class="portfolio-card">
+                <a href="video.html">
+                    <img src="assets/video/video-thum.png" alt="Graphic Design">
+                <div class="card-overlay">
+                    <h2>Video Editing</h2>
+                    <p>View my editing work</p>
+                </div>
+                </a>
+            </div>
+            <div class="portfolio-card">
+                <a href="graphic.html">
+                    <img src="assets/graphics/fortniteee.png" alt="Graphic Design">
+                <div class="card-overlay">
+                    <h2>Graphic Design</h2>
+                    <p>View my design work</p>
+                </div>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <!-- Content will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const modal = document.querySelector('.modal');
+        const modalContent = document.querySelector('.modal-content');
+        const closeModal = document.querySelector('.close-modal');
+
+        function openModal(content) {
+            modalContent.innerHTML = content;
+            modal.style.display = 'block';
+        }
+
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Portfolio card navigation
+        document.querySelectorAll('.portfolio-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const type = card.querySelector('h2').textContent;
+                // In a real implementation, this would navigate to the respective pages
+                console.log(`Navigating to ${type} page`);
+            });
+        });
+    </script>
+</body>
+</html>
