@@ -241,7 +241,7 @@
                         ;" data-type="video">
                         <!-- <img src="/api/placeholder/400/200" alt="Video Project 1" class="project-image"> -->
                         <!-- <video class="project-video" src="assets/video/final-portfolio.mp4"></video> -->
-                        <iframe class="project-video" src="https://drive.google.com/file/d/1CmZ3l6KvtiGnLxDBVshkCaHJ8-dxA6O8/preview" width="640" height="360" allow="autoplay"></iframe>
+                        <iframe allowfullscreen class="project-video" src="https://drive.google.com/file/d/1CmZ3l6KvtiGnLxDBVshkCaHJ8-dxA6O8/preview" width="640" height="360" allow="autoplay"></iframe>
 
                         <div class="project-info">
                             <h3>The Great London Smog</h3>
@@ -254,7 +254,7 @@
                         <!-- <img src="/api/placeholder/400/200" alt="Video Project 1" class="project-image"> -->
                         <!-- <video class="project-video" src="assets/video/final-portfolio.mp4"></video> -->
                         <iframe class="project-video" src="https://drive.google.com/file/d/1EAdksGdoD-P47e4kGZz8MasdCzas3Ken/preview
-" width="1280" height="720" allow="autoplay"></iframe>
+" width="1280" height="720" allow="autoplay" allowfullscreen></iframe>
 
                         <div class="project-info">
                             <h3> Create Viral AI Shorts </h3>
@@ -263,14 +263,14 @@
                     </div>
                 </div>
 
-                <div class="carousel-nav">
+<!--                 <div class="carousel-nav">
                     <button class="carousel-btn">
                         <i class="fas fa-chevron-up"></i>
                     </button>
                     <button class="carousel-btn">
                         <i class="fas fa-chevron-down"></i>
                     </button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -285,6 +285,15 @@
     </div>
 
     <script>
+
+        document.addEventListener("contextmenu", (event) => event.preventDefault());
+
+document.addEventListener("keydown", (event) => {
+    if (event.ctrlKey && ["u", "U", "c", "C", "i", "I", "j", "J", "s", "S"].includes(event.key)) {
+        event.preventDefault();
+    }
+});
+
         // Category Tab Switching
         document.querySelectorAll('.category-tab').forEach(tab => {
             tab.addEventListener('click', () => {
