@@ -343,6 +343,14 @@
     </div>
 
     <script>
+        document.addEventListener("contextmenu", (event) => event.preventDefault());
+
+document.addEventListener("keydown", (event) => {
+    if (event.ctrlKey && ["u", "U", "c", "C", "i", "I", "j", "J", "s", "S"].includes(event.key)) {
+        event.preventDefault();
+    }
+});
+
         // Category Tab Switching
         document.querySelectorAll('.category-tab').forEach(tab => {
             tab.addEventListener('click', () => {
