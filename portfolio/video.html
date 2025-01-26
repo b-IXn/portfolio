@@ -306,13 +306,18 @@
         });
 
         const shorts = document.getElementById("short-btn");
-        const longs = document.getElementById("long-btn");
+const longs = document.getElementById("long-btn");
 
-        shorts.addEventListener("click", () => {
-            document.getElementById("shorts").style.display = "block";}
+shorts.addEventListener("click", () => {
+    document.getElementById("shorts").style.display = "block";
+    document.getElementById("long").style.display = "none"; // Hide the long section
+});
 
-        longs.addEventListener("click", () => {
-            document.getElementById("long").style.display = "block";}
+longs.addEventListener("click", () => {
+    document.getElementById("long").style.display = "block";
+    document.getElementById("shorts").style.display = "none"; // Hide the shorts section
+});
+
 
         // Modal Functionality
         const modal = document.querySelector('.modal');
